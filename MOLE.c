@@ -38,6 +38,12 @@ void initialize() {
     for (int i = 0; i < HEIGHT; i++) {
         board[i][0] = board[i][WIDTH - 1] = '#';
     }
+
+    for (int i = 1; i < 9; i++) {
+        for (int j = 1; j < 14; j++) {
+            board[i][j] = '#';
+        }
+    }
 }
 
 void display() {
@@ -53,42 +59,40 @@ void display() {
 void mole() {
 
     /* if //일반두더지
-     printf("    $$$$$$$     \n");
-     printf("   $$     $$    \n");
-     printf("  $$       $$   \n");
-     printf(" $$  ^   ^  $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$    o    $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$$$$$$$$$$$$  \n");
-     else //맞은 두더지
-     printf("    $$$$$$$     \n");
-     printf("   $$     $$    \n");
-     printf("  $$       $$   \n");
-     printf(" $$  ㅠ ㅠ  $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$    @    $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$$$$$$$$$$$$  \n");
-     //왕두더지
-     printf("      ☆       \n");
-     printf("   $$$  $$$$    \n");
-     printf("  $$       $$   \n");
-     printf(" $$  ^   ^  $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$    o    $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$$$$$$$$$$$$  \n");
+     printf("   $$$$$$$   \n");
+     printf("  $$     $$  \n");
+     printf(" $$       $$ \n");
+     printf("$$  ^   ^  $$\n");
+     printf("$$    o    $$\n");
+     printf("$$         $$\n");
+     printf("$$$$$$$$$$$$$\n");
 
-     //맞은 왕두더지
-     printf("      ☆       \n");
-     printf("   $$$  $$$$    \n");
-     printf("  $$       $$   \n");
-     printf(" $$  ㅠ ㅠ  $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$    <    $$  \n");
-     printf(" $$         $$  \n");
-     printf(" $$$$$$$$$$$$$  \n");
+     else //맞은 두더지
+     printf("   $$$$$$$   \n");
+     printf("  $$     $$  \n");
+     printf(" $$       $$ \n");
+     printf("$$  x   x  $$\n");
+     printf("$$    @    $$\n");
+     printf("$$         $$\n");
+     printf("$$$$$$$$$$$$$\n");
+
+
+     //왕두더지
+     printf("     ☆      \n");
+     printf("  $$$  $$$$  \n");
+     printf(" $$       $$ \n");
+     printf("$$  ^   ^  $$\n");
+     printf("$$    o    $$\n");
+     printf("$$         $$\n");
+     printf("$$$$$$$$$$$$$\n");
+
+     printf("     ☆      \n");
+     printf("  $$$  $$$$  \n");
+     printf(" $$       $$ \n");
+     printf("$$  ㅠ  ㅠ $$\n");
+     printf("$$    <    $$\n");
+     printf("$$         $$\n");
+     printf("$$$$$$$$$$$$$\n");
      */
 }
 
@@ -97,7 +101,60 @@ void cilck() {
 }
 
 void range(int n) {
-
+    //1번구역
+    for (int i = 11; i < 20; i++) {
+        for (int j = 1; j < 14; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //2번구역
+    for (int i = 11; i < 20; i++) {
+        for (int j = 14; j < 27; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //3번구역
+    for (int i = 11; i < 20; i++) {
+        for (int j = 27; j < 40; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //4번구역
+    for (int i = 6; i < 13; i++) {
+        for (int j = 1; j < 14; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //5번구역
+    for (int i = 6; i < 13; i++) {
+        for (int j = 14; j < 27; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //6번구역
+    for (int i = 6; i < 13; i++) {
+        for (int j = 27; j < 40; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //7번구역
+    for (int i = 1; i < 9; i++) {
+        for (int j = 1; j < 14; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //8번구역
+    for (int i = 1; i < 9; i++) {
+        for (int j = 14; j < 27; j++) {
+            board[i][j] = '#';
+        }
+    }
+    //9번구역
+    for (int i = 1; i < 9; i++) {
+        for (int j = 27; j < 40; j++) {
+            board[i][j] = '#';
+        }
+    }
 }
 
 

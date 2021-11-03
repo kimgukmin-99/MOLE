@@ -5,8 +5,10 @@
 #include<stdlib.h>
 #include <time.h>
 
-#define WIDTH 79
-#define HEIGHT 31
+#define WIDTH 41
+#define HEIGHT 20
+
+
 
 char board[HEIGHT][WIDTH];
 int score = 0;
@@ -49,12 +51,50 @@ void display() {
 }
 
 void mole() {
-    printf("**********\n");
-    printf("**********\n");
-    printf("**********\n");
-    printf("**********\n");
+
+    /* if //일반두더지
+     printf("    $$$$$$$     \n");
+     printf("   $$     $$    \n");
+     printf("  $$       $$   \n");
+     printf(" $$  ^   ^  $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$    o    $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$$$$$$$$$$$$  \n");
+     else //맞은 두더지
+     printf("    $$$$$$$     \n");
+     printf("   $$     $$    \n");
+     printf("  $$       $$   \n");
+     printf(" $$  ㅠ ㅠ  $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$    @    $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$$$$$$$$$$$$  \n");
+     //왕두더지
+     printf("      ☆       \n");
+     printf("   $$$  $$$$    \n");
+     printf("  $$       $$   \n");
+     printf(" $$  ^   ^  $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$    o    $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$$$$$$$$$$$$  \n");
+
+     //맞은 왕두더지
+     printf("      ☆       \n");
+     printf("   $$$  $$$$    \n");
+     printf("  $$       $$   \n");
+     printf(" $$  ㅠ ㅠ  $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$    <    $$  \n");
+     printf(" $$         $$  \n");
+     printf(" $$$$$$$$$$$$$  \n");
+     */
 }
 
+void cilck() {
+
+}
 
 void range(int n) {
 
@@ -67,12 +107,8 @@ void range(int n) {
 
 int main(void)
 {
-    srand((unsigned int)time(NULL)); //srand 써서 매번랜덤
     initialize();
     while (1) {
-
-
-        //move();
         display();
         Sleep(1000);
         system("cls");

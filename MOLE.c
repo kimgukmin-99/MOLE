@@ -39,11 +39,7 @@ void initialize() {
         board[i][0] = board[i][WIDTH - 1] = '#';
     }
 
-    for (int i = 1; i < 9; i++) {
-        for (int j = 1; j < 14; j++) {
-            board[i][j] = '#';
-        }
-    }
+
 }
 
 void display() {
@@ -101,58 +97,76 @@ void cilck() {
 }
 
 void range(int n) {
-    //1锅备开
-    for (int i = 11; i < 20; i++) {
-        for (int j = 1; j < 14; j++) {
-            board[i][j] = '#';
+    if (n == 1) {
+        //1锅备开
+        for (int i = 11; i < 20; i++) {
+            for (int j = 1; j < 14; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //2锅备开
-    for (int i = 11; i < 20; i++) {
-        for (int j = 14; j < 27; j++) {
-            board[i][j] = '#';
+    else if (n == 2) {
+        //2锅备开
+        for (int i = 11; i < 20; i++) {
+            for (int j = 14; j < 27; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //3锅备开
-    for (int i = 11; i < 20; i++) {
-        for (int j = 27; j < 40; j++) {
-            board[i][j] = '#';
+    else if (n == 3) {
+        //3锅备开
+        for (int i = 11; i < 20; i++) {
+            for (int j = 27; j < 40; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //4锅备开
-    for (int i = 6; i < 13; i++) {
-        for (int j = 1; j < 14; j++) {
-            board[i][j] = '#';
+    else if (n == 4) {
+        //4锅备开
+        for (int i = 6; i < 13; i++) {
+            for (int j = 1; j < 14; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //5锅备开
-    for (int i = 6; i < 13; i++) {
-        for (int j = 14; j < 27; j++) {
-            board[i][j] = '#';
+    else if (n == 5) {
+        //5锅备开
+        for (int i = 6; i < 13; i++) {
+            for (int j = 14; j < 27; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //6锅备开
-    for (int i = 6; i < 13; i++) {
-        for (int j = 27; j < 40; j++) {
-            board[i][j] = '#';
+    else if (n == 6) {
+        //6锅备开
+        for (int i = 6; i < 13; i++) {
+            for (int j = 27; j < 40; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //7锅备开
-    for (int i = 1; i < 9; i++) {
-        for (int j = 1; j < 14; j++) {
-            board[i][j] = '#';
+    else if (n == 7) {
+        //7锅备开
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 14; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //8锅备开
-    for (int i = 1; i < 9; i++) {
-        for (int j = 14; j < 27; j++) {
-            board[i][j] = '#';
+    else if (n == 8) {
+        //8锅备开
+        for (int i = 1; i < 9; i++) {
+            for (int j = 14; j < 27; j++) {
+                board[i][j] = '#';
+            }
         }
     }
-    //9锅备开
-    for (int i = 1; i < 9; i++) {
-        for (int j = 27; j < 40; j++) {
-            board[i][j] = '#';
+    else {
+        //9锅备开
+        for (int i = 1; i < 9; i++) {
+            for (int j = 27; j < 40; j++) {
+                board[i][j] = '#';
+            }
         }
     }
 }
@@ -164,8 +178,12 @@ void range(int n) {
 
 int main(void)
 {
+    srand((unsigned int)time(NULL)); //srand 结辑 概锅罚待蔼 函版秦林扁
     initialize();
     while (1) {
+        initialize();
+        int xn = rand() % 9 + 1;
+        range(xn);
         display();
         Sleep(1000);
         system("cls");

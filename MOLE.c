@@ -4,6 +4,7 @@
 #include <limits.h>
 #include<stdlib.h>
 #include <time.h>
+#include < cstdio >
 
 #define WIDTH 41
 #define HEIGHT 20
@@ -12,6 +13,8 @@
 
 char board[HEIGHT][WIDTH];
 int score = 0;
+
+
 
 void initialize();         //초기보드판
 void display();            //화면출력
@@ -178,9 +181,87 @@ void range(int n) {
 
 int main(void)
 {
+    int y = 0; //while문 반복을 위한 변수
+    char yes;
+
+    //초기화면 
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("                       두더지 게임\n");
+    printf("                  게임 시작하시겠습니까?\n");
+    printf("\n");
+    printf("\n");
+    printf("                          Y / N\n");
+
+
+
+    yes = getchar();
+    switch (yes) {
+    case 'y':
+        printf("3초후 게임이 시작됩니다.\n\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        printf("3...");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        printf("2...");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        printf("1...");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        y = 1;
+        break;
+
+    case 'Y':
+        printf("3초후 게임이 시작됩니다.\n\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        printf("3...");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        printf("2...");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        printf("1...");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+        y = 1;
+        break;
+
+    case 'n':
+        y = 0;
+        break;
+        return 0;
+
+    case 'N':
+        y = 0;
+        break;
+        return 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    system("cls");
     srand((unsigned int)time(NULL)); //srand 써서 매번랜덤값 변경해주기
     initialize();
-    while (1) {
+    while (y) {
         initialize();
         int xn = rand() % 9 + 1;
         range(xn);

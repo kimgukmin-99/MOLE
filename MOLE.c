@@ -5,6 +5,7 @@
 #include<stdlib.h>
 #include <time.h>
 #include < cstdio >
+#include<conio.h>
 
 #define WIDTH 41
 #define HEIGHT 20
@@ -12,32 +13,31 @@
 
 
 char board[HEIGHT][WIDTH];
-int score = 0;
+
 
 
 
 void initialize();         //초기보드판
 void display();            //화면출력
-void mole();               //두더지등장
-void click();              //화면클릭해서 두더지잡기
-void range(int);           //구역나누기
+int Getnumber();           //화면클릭해서 두더지잡기
+void range_int(int, int);       //구역나누기
+void mole(int a, int b);
+void mole_king(int a, int b);
 
 
 
 void initialize() {
-    // 위, 아래 가로벽 horizontal walls
+
     for (int i = 0; i < WIDTH; i++) {
         board[0][i] = board[HEIGHT - 1][i] = '#';
     }
 
-    // 안쪽의 공백 inner space
     for (int i = 1; i < HEIGHT - 1; i++) {
         for (int j = 1; j < WIDTH - 1; j++) {
             board[i][j] = ' ';
         }
     }
 
-    // 좌, 우 세로벽 vertical walls
     for (int i = 0; i < HEIGHT; i++) {
         board[i][0] = board[i][WIDTH - 1] = '#';
     }
@@ -46,7 +46,6 @@ void initialize() {
 }
 
 void display() {
-    printf("socre = %d\n", score); //맨위 스코어판 출력
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
             printf("%c", board[i][j]);
@@ -55,124 +54,307 @@ void display() {
     }
 }
 
-void mole() {
-
-    /* if //일반두더지
-     printf("   $$$$$$$   \n");
-     printf("  $$     $$  \n");
-     printf(" $$       $$ \n");
-     printf("$$  ^   ^  $$\n");
-     printf("$$    o    $$\n");
-     printf("$$         $$\n");
-     printf("$$$$$$$$$$$$$\n");
-
-     else //맞은 두더지
-     printf("   $$$$$$$   \n");
-     printf("  $$     $$  \n");
-     printf(" $$       $$ \n");
-     printf("$$  x   x  $$\n");
-     printf("$$    @    $$\n");
-     printf("$$         $$\n");
-     printf("$$$$$$$$$$$$$\n");
 
 
-     //왕두더지
-     printf("     ☆      \n");
-     printf("  $$$  $$$$  \n");
-     printf(" $$       $$ \n");
-     printf("$$  ^   ^  $$\n");
-     printf("$$    o    $$\n");
-     printf("$$         $$\n");
-     printf("$$$$$$$$$$$$$\n");
 
-     printf("     ☆      \n");
-     printf("  $$$  $$$$  \n");
-     printf(" $$       $$ \n");
-     printf("$$  ㅠ  ㅠ $$\n");
-     printf("$$    <    $$\n");
-     printf("$$         $$\n");
-     printf("$$$$$$$$$$$$$\n");
-     */
+
+void mole_king(int a, int b) {
+
+
+    board[a][b] = ' ';
+    board[a][b + 1] = ' ';
+    board[a][b + 2] = ' ';
+    board[a][b + 3] = ' ';
+    board[a][b + 4] = ' ';
+    board[a][b + 5] = '@';
+    board[a][b + 6] = '@';
+    board[a][b + 7] = ' ';
+    board[a][b + 8] = ' ';
+    board[a][b + 9] = ' ';
+    board[a][b + 10] = ' ';
+    board[a][b + 11] = ' ';
+    board[a][b + 12] = ' ';
+
+
+    board[a + 1][b] = ' ';
+    board[a + 1][b + 1] = ' ';
+    board[a + 1][b + 2] = '$';
+    board[a + 1][b + 3] = '$';
+    board[a + 1][b + 4] = '$';
+    board[a + 1][b + 5] = ' ';
+    board[a + 1][b + 6] = ' ';
+    board[a + 1][b + 7] = '$';
+    board[a + 1][b + 8] = '$';
+    board[a + 1][b + 9] = '$';
+    board[a + 1][b + 10] = '$';
+    board[a + 1][b + 11] = ' ';
+    board[a + 1][b + 12] = ' ';
+
+    board[a + 2][b] = ' ';
+    board[a + 2][b + 1] = '$';
+    board[a + 2][b + 2] = '$';
+    board[a + 2][b + 3] = ' ';
+    board[a + 2][b + 4] = ' ';
+    board[a + 2][b + 5] = ' ';
+    board[a + 2][b + 6] = ' ';
+    board[a + 2][b + 7] = ' ';
+    board[a + 2][b + 8] = ' ';
+    board[a + 2][b + 9] = ' ';
+    board[a + 2][b + 10] = '$';
+    board[a + 2][b + 11] = '$';
+    board[a + 2][b + 12] = ' ';
+
+    board[a + 3][b] = '$';
+    board[a + 3][b + 1] = '$';
+    board[a + 3][b + 2] = ' ';
+    board[a + 3][b + 3] = ' ';
+    board[a + 3][b + 4] = '@';
+    board[a + 3][b + 5] = ' ';
+    board[a + 3][b + 6] = ' ';
+    board[a + 3][b + 7] = ' ';
+    board[a + 3][b + 8] = '@';
+    board[a + 3][b + 9] = ' ';
+    board[a + 3][b + 10] = ' ';
+    board[a + 3][b + 11] = '$';
+    board[a + 3][b + 12] = '$';
+
+    board[a + 4][b] = '$';
+    board[a + 4][b + 1] = '$';
+    board[a + 4][b + 2] = ' ';
+    board[a + 4][b + 3] = ' ';
+    board[a + 4][b + 4] = ' ';
+    board[a + 4][b + 5] = ' ';
+    board[a + 4][b + 6] = 'O';
+    board[a + 4][b + 7] = ' ';
+    board[a + 4][b + 8] = ' ';
+    board[a + 4][b + 9] = ' ';
+    board[a + 4][b + 10] = ' ';
+    board[a + 4][b + 11] = '$';
+    board[a + 4][b + 12] = '$';
+
+    board[a + 5][b] = '$';
+    board[a + 5][b + 1] = '$';
+    board[a + 5][b + 2] = ' ';
+    board[a + 5][b + 3] = ' ';
+    board[a + 5][b + 4] = ' ';
+    board[a + 5][b + 5] = ' ';
+    board[a + 5][b + 6] = ' ';
+    board[a + 5][b + 7] = ' ';
+    board[a + 5][b + 8] = ' ';
+    board[a + 5][b + 9] = ' ';
+    board[a + 5][b + 10] = ' ';
+    board[a + 5][b + 11] = '$';
+    board[a + 5][b + 12] = '$';
+
+    board[a + 6][b] = '$';
+    board[a + 6][b + 1] = '$';
+    board[a + 6][b + 2] = '$';
+    board[a + 6][b + 3] = '$';
+    board[a + 6][b + 4] = '$';
+    board[a + 6][b + 5] = '$';
+    board[a + 6][b + 6] = '$';
+    board[a + 6][b + 7] = '$';
+    board[a + 6][b + 8] = '$';
+    board[a + 6][b + 9] = '$';
+    board[a + 6][b + 10] = '$';
+    board[a + 6][b + 11] = '$';
+    board[a + 6][b + 12] = '$';
+
+
 }
 
-void cilck() {
+void mole(int a, int b) {
+
+    board[a][b] = ' ';
+    board[a][b + 1] = ' ';
+    board[a][b + 2] = ' ';
+    board[a][b + 3] = '$';
+    board[a][b + 4] = '$';
+    board[a][b + 5] = '$';
+    board[a][b + 6] = '$';
+    board[a][b + 7] = '$';
+    board[a][b + 8] = '$';
+    board[a][b + 9] = '$';
+    board[a][b + 10] = ' ';
+    board[a][b + 11] = ' ';
+    board[a][b + 12] = ' ';
+
+
+    board[a + 1][b] = ' ';
+    board[a + 1][b + 1] = ' ';
+    board[a + 1][b + 2] = '$';
+    board[a + 1][b + 3] = '$';
+    board[a + 1][b + 4] = ' ';
+    board[a + 1][b + 5] = ' ';
+    board[a + 1][b + 6] = ' ';
+    board[a + 1][b + 7] = ' ';
+    board[a + 1][b + 8] = ' ';
+    board[a + 1][b + 9] = '$';
+    board[a + 1][b + 10] = '$';
+    board[a + 1][b + 11] = ' ';
+    board[a + 1][b + 12] = ' ';
+
+    board[a + 2][b] = ' ';
+    board[a + 2][b + 1] = '$';
+    board[a + 2][b + 2] = '$';
+    board[a + 2][b + 3] = ' ';
+    board[a + 2][b + 4] = ' ';
+    board[a + 2][b + 5] = ' ';
+    board[a + 2][b + 6] = ' ';
+    board[a + 2][b + 7] = ' ';
+    board[a + 2][b + 8] = ' ';
+    board[a + 2][b + 9] = ' ';
+    board[a + 2][b + 10] = '$';
+    board[a + 2][b + 11] = '$';
+    board[a + 2][b + 12] = ' ';
+
+    board[a + 3][b] = '$';
+    board[a + 3][b + 1] = '$';
+    board[a + 3][b + 2] = ' ';
+    board[a + 3][b + 3] = ' ';
+    board[a + 3][b + 4] = '^';
+    board[a + 3][b + 5] = ' ';
+    board[a + 3][b + 6] = ' ';
+    board[a + 3][b + 7] = ' ';
+    board[a + 3][b + 8] = '^';
+    board[a + 3][b + 9] = ' ';
+    board[a + 3][b + 10] = ' ';
+    board[a + 3][b + 11] = '$';
+    board[a + 3][b + 12] = '$';
+
+    board[a + 4][b] = '$';
+    board[a + 4][b + 1] = '$';
+    board[a + 4][b + 2] = ' ';
+    board[a + 4][b + 3] = ' ';
+    board[a + 4][b + 4] = ' ';
+    board[a + 4][b + 5] = ' ';
+    board[a + 4][b + 6] = 'o';
+    board[a + 4][b + 7] = ' ';
+    board[a + 4][b + 8] = ' ';
+    board[a + 4][b + 9] = ' ';
+    board[a + 4][b + 10] = ' ';
+    board[a + 4][b + 11] = '$';
+    board[a + 4][b + 12] = '$';
+
+    board[a + 5][b] = '$';
+    board[a + 5][b + 1] = '$';
+    board[a + 5][b + 2] = ' ';
+    board[a + 5][b + 3] = ' ';
+    board[a + 5][b + 4] = ' ';
+    board[a + 5][b + 5] = ' ';
+    board[a + 5][b + 6] = ' ';
+    board[a + 5][b + 7] = ' ';
+    board[a + 5][b + 8] = ' ';
+    board[a + 5][b + 9] = ' ';
+    board[a + 5][b + 10] = ' ';
+    board[a + 5][b + 11] = '$';
+    board[a + 5][b + 12] = '$';
+
+    board[a + 6][b] = '$';
+    board[a + 6][b + 1] = '$';
+    board[a + 6][b + 2] = '$';
+    board[a + 6][b + 3] = '$';
+    board[a + 6][b + 4] = '$';
+    board[a + 6][b + 5] = '$';
+    board[a + 6][b + 6] = '$';
+    board[a + 6][b + 7] = '$';
+    board[a + 6][b + 8] = '$';
+    board[a + 6][b + 9] = '$';
+    board[a + 6][b + 10] = '$';
+    board[a + 6][b + 11] = '$';
+    board[a + 6][b + 12] = '$';
 
 }
 
-void range(int n) {
+void range_int(int n, int m) {
+
     if (n == 1) {
-        //1번구역
-        for (int i = 11; i < 20; i++) {
-            for (int j = 1; j < 14; j++) {
-                board[i][j] = '#';
-            }
+        int a = 11;
+        int b = 2;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
     else if (n == 2) {
-        //2번구역
-        for (int i = 11; i < 20; i++) {
-            for (int j = 14; j < 27; j++) {
-                board[i][j] = '#';
-            }
+        int a = 11;
+        int b = 14;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
     else if (n == 3) {
-        //3번구역
-        for (int i = 11; i < 20; i++) {
-            for (int j = 27; j < 40; j++) {
-                board[i][j] = '#';
-            }
+        int a = 11;
+        int b = 27;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
     else if (n == 4) {
-        //4번구역
-        for (int i = 6; i < 13; i++) {
-            for (int j = 1; j < 14; j++) {
-                board[i][j] = '#';
-            }
+        int a = 6;
+        int b = 2;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
+
     }
     else if (n == 5) {
-        //5번구역
-        for (int i = 6; i < 13; i++) {
-            for (int j = 14; j < 27; j++) {
-                board[i][j] = '#';
-            }
+        int a = 6;
+        int b = 14;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
     else if (n == 6) {
-        //6번구역
-        for (int i = 6; i < 13; i++) {
-            for (int j = 27; j < 40; j++) {
-                board[i][j] = '#';
-            }
+        int a = 6;
+        int b = 27;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
+
     }
     else if (n == 7) {
-        //7번구역
-        for (int i = 1; i < 9; i++) {
-            for (int j = 1; j < 14; j++) {
-                board[i][j] = '#';
-            }
+        int a = 1;
+        int b = 2;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
     else if (n == 8) {
-        //8번구역
-        for (int i = 1; i < 9; i++) {
-            for (int j = 14; j < 27; j++) {
-                board[i][j] = '#';
-            }
+        int a = 1;
+        int b = 14;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
     else {
-        //9번구역
-        for (int i = 1; i < 9; i++) {
-            for (int j = 27; j < 40; j++) {
-                board[i][j] = '#';
-            }
+        int a = 1;
+        int b = 27;
+
+        mole(a, b);
+        if (m == 1) {
+            mole_king(a, b);
         }
     }
+
+
 }
+
 
 
 
@@ -181,8 +363,12 @@ void range(int n) {
 
 int main(void)
 {
-    int y = 0; //while문 반복을 위한 변수
+    int y = 0;
     char yes;
+    int score = 0;
+    int level;
+
+
 
     //초기화면 
     printf("\n");
@@ -202,6 +388,13 @@ int main(void)
     yes = getchar();
     switch (yes) {
     case 'y':
+
+        printf("난이도를 설정해주세요.");
+        printf("\n");
+        printf("                          Nomal (1) / Hard (2)\n");
+        scanf_s("%d", &level);
+
+
         printf("3초후 게임이 시작됩니다.\n\n");
         Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
         printf("3...");
@@ -220,6 +413,16 @@ int main(void)
         break;
 
     case 'Y':
+
+
+        printf("난이도를 설정해주세요.");
+        printf("\n");
+        printf("                          Nomal (1) / Hard (2)\n");
+        scanf_s("%d", &level);
+
+
+
+
         printf("3초후 게임이 시작됩니다.\n\n");
         Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
         printf("3...");
@@ -255,19 +458,42 @@ int main(void)
 
 
 
-
-
-
+    int endTime = (unsigned)time(NULL);
+    endTime += 30;
     system("cls");
-    srand((unsigned int)time(NULL)); //srand 써서 매번랜덤값 변경해주기
     initialize();
     while (y) {
+        srand((unsigned int)time(NULL));
+        int startTime = (unsigned)time(NULL);
+        printf("%d sec\n", endTime - startTime);
+        printf("socre = %d\n", score);
         initialize();
         int xn = rand() % 9 + 1;
-        range(xn);
+        int zn = rand() % 5 + 1;
+        range_int(xn, zn);
         display();
-        Sleep(1000);
+
+        Sleep(1000 / level);
         system("cls");
+        if (endTime - startTime == 0) {
+            break;
+        }
     }
-    return 0;
+
+    printf("\n");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+    printf("게임끝!!");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+    printf("닉네임과 점수를 등록해주세요.");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+    Sleep(100);		printf("\n");		Sleep(100);		printf("\n");		Sleep(100);		printf("\n");
+
+    printf("닉네임: ");
+    char nick;
+    scanf_s("%s", &nick);
+
+
 }

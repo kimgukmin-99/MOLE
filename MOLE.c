@@ -38,6 +38,17 @@ int Getnumber() {
     return num;
 }
 
+char sleep_input(int milliseconds)
+{
+    while (_kbhit() == 0)
+    {
+        if (milliseconds <= 0) return -1;
+        Sleep(10);
+        milliseconds -= 10;
+    }
+    return Getnumber();
+}
+
 
 void initialize() {
 
@@ -485,7 +496,7 @@ int main(void)
         int zn = rand() % 5 + 1;
         range_int(xn, zn);
         display();
-        if (Getnumber() == xn) {
+        if (sleep_input(10) == xn and zn == 1) {
             score++;
         }
 

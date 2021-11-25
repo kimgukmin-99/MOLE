@@ -24,6 +24,19 @@ void range_int(int, int);       //구역나누기
 void mole(int a, int b);
 void mole_king(int a, int b);
 
+int Getnumber() {
+    int num = 0, ch;
+
+    while ((ch = getchar()) != EOF) {
+        if (ch >= '0' && ch <= '9') num = num * 10 + ch - '0';
+        else if (ch == '\n') break;
+        else {
+            printf("\n");
+            break;
+        }
+    }
+    return num;
+}
 
 
 void initialize() {
@@ -472,6 +485,9 @@ int main(void)
         int zn = rand() % 5 + 1;
         range_int(xn, zn);
         display();
+        if (Getnumber() == xn) {
+            score++;
+        }
 
         Sleep(1000 / level);
         system("cls");
